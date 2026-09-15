@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>ILIMIGROUP — Cahier des charges Plateforme E-Learning — v2</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 20mm;
+    @bottom-center { content: "ILIMIGROUP — Cahier des charges Plateforme E-Learning — v2 · page " counter(page); font-size: 7.5pt; color: #6b7280; } }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Segoe UI", Arial, "DejaVu Sans", sans-serif; font-size: 10pt; line-height: 1.45; color: #1f2937; background: #fff; }
+  .page { max-width: 178mm; margin: 0 auto; padding: 10mm 0; }
+  @media print { .page { max-width: none; padding: 0; } }
+  p { margin: 6px 0 9px; }
+  ul { margin: 6px 0 10px; padding-left: 20px; } li { margin: 3px 0; }
+  ul.tight { margin: 0; padding-left: 16px; } ul.tight li { margin: 2px 0; }
+  strong { color: #111827; }
+  code { font-family: Consolas, "DejaVu Sans Mono", monospace; font-size: 9pt; background: #f3f4f6; padding: 1px 4px; border-radius: 3px; }
+
+  /* Couverture */
+  .cover { text-align: center; padding-top: 65mm; page-break-after: always; break-after: page; }
+  .kicker { color: #e8a020; font-weight: 700; letter-spacing: .25em; font-size: 10pt; }
+  .cover h1 { color: #1f3a8a; font-size: 30pt; margin: 14px 0 6px; }
+  .cover .subtitle { font-size: 14pt; color: #374151; margin: 0 auto 14px; padding-bottom: 10px; border-bottom: 1px solid #d1d5db; max-width: 120mm; }
+  .pill { display: inline-block; background: #1f3a8a; color: #fff; font-size: 9pt; font-weight: 600; letter-spacing: .1em; padding: 5px 16px; border-radius: 999px; margin: 18px 0 30px; }
+  .meta { color: #6b7280; font-size: 9.5pt; margin: 6px auto; max-width: 135mm; }
+
+  /* Sommaire */
+  .toc { page-break-after: always; break-after: page; }
+  h2.plain { color: #1f3a8a; font-size: 13pt; border-bottom: 2px solid #1f3a8a; padding-bottom: 4px; margin: 0 0 12px; }
+  .toc ol { margin: 0 0 28px; padding-left: 26px; } .toc ol li { margin: 4px 0; }
+
+  /* Corps */
+  main > h2.sec:first-child { margin-top: 0; }
+  h2.sec { background: #1f3a8a; color: #fff; font-size: 13pt; font-weight: 700; padding: 7px 12px; margin: 22px 0 12px; border-radius: 2px; page-break-after: avoid; break-after: avoid; }
+  h3 { color: #1f3a8a; font-size: 11pt; margin: 16px 0 6px; padding-bottom: 3px; border-bottom: 1px solid #d1d5db; page-break-after: avoid; break-after: avoid; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 12px; font-size: 9.3pt; page-break-inside: avoid; break-inside: avoid; }
+  th { background: #1f3a8a; color: #fff; text-align: left; padding: 6px 8px; font-weight: 600; vertical-align: top; }
+  td { padding: 6px 8px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+  .note { background: #eef3fb; border-left: 4px solid #1f3a8a; padding: 8px 12px; margin: 10px 0 12px; font-size: 9.3pt; page-break-inside: avoid; break-inside: avoid; }
+  .badge { display: inline-block; font-size: 7.5pt; font-weight: 700; letter-spacing: .04em; padding: 2px 7px; border-radius: 3px; white-space: nowrap; vertical-align: middle; }
+  .b-eleve { background: #dbeafe; color: #1e40af; }
+  .b-form  { background: #ede9fe; color: #5b21b6; }
+  .b-caf   { background: #ccfbf1; color: #0f766e; }
+  .b-admin { background: #fce7f3; color: #9d174d; }
+  .b-super { background: #1f3a8a; color: #fde68a; }
+  .b-mvp   { background: #dcfce7; color: #166534; }
+  .b-post, .b-p { background: #fef3c7; color: #92400e; }
+  .b-sup   { background: #fee2e2; color: #991b1b; }
+  .b-v2    { background: #e5e7eb; color: #374151; }
+  ol.steps { list-style: none; counter-reset: step; padding: 0; margin: 8px 0 12px; }
+  ol.steps li { counter-increment: step; position: relative; padding-left: 30px; margin: 7px 0; }
+  ol.steps li::before { content: counter(step); position: absolute; left: 0; top: 1px; width: 20px; height: 20px; border-radius: 50%; background: #1f3a8a; color: #fff; font-size: 9pt; font-weight: 700; text-align: center; line-height: 20px; }
+  pre.tree { background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 4px; padding: 10px 12px; font-family: Consolas, "DejaVu Sans Mono", monospace; font-size: 8.6pt; line-height: 1.4; margin: 10px 0 12px; page-break-inside: avoid; break-inside: avoid; }
+  .footer { text-align: center; color: #9ca3af; font-size: 7.5pt; margin-top: 30px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ===================== COUVERTURE ===================== -->
+<section class="cover">
+  <div class="kicker">ILIMIGROUP · CAHIER DES CHARGES</div>
+  <h1>Plateforme E-Learning</h1>
+  <p class="subtitle">Version 2 — refonte des rôles</p>
+  <span class="pill" id="date">VERSION 2</span>
+  <p class="meta">Préparé par Emmanuel Diomandé — Stage Backend, ILIMIGROUP<br>En collaboration avec Samuel</p>
+  <p class="meta">Ce document reprend le cahier des charges initial et intègre l'ensemble des décisions et clarifications validées depuis sa rédaction. La version 2 acte la refonte des rôles décidée avec la direction : séparation entre la production du contenu pédagogique (Admin-Formateur) et le suivi des élèves (Formateur).</p>
+</section>
+
+<!-- ===================== SOMMAIRE ===================== -->
+<section class="toc">
+  <h2 class="plain">Sommaire</h2>
+  <ol>
+    <li>Présentation du projet</li>
+    <li>Périmètre du projet — MVP et Post-MVP</li>
+    <li>Les profils utilisateurs</li>
+    <li>Inscription, authentification et accès aux formations</li>
+    <li>Espace Élève</li>
+    <li>Espace Formateur</li>
+    <li>Espace Administration (Administrateur et Super Admin)</li>
+    <li>Espace Admin-Formateur — Gestion des formations et des cours</li>
+    <li>Quiz et évaluations</li>
+    <li>Gamification — Points et récompenses</li>
+    <li>Fonctionnalités Post-MVP (par ordre de priorité)</li>
+    <li>Architecture technique</li>
+    <li>Design et direction artistique</li>
+    <li>Synthèse du périmètre</li>
+  </ol>
+
+  <h2 class="plain">Historique des modifications</h2>
+  <table>
+    <tr><th style="width:12%">Version</th><th>Modifications</th></tr>
+    <tr><td>v1</td><td>Version consolidée initiale : 3 rôles ; contenu créé par le Formateur et soumis à validation de l'Administrateur.</td></tr>
+    <tr><td>v2</td><td>Refonte des rôles : le Formateur devient un rôle de suivi pur ; nouveau rôle Admin-Formateur, auteur du contenu, publication libre ; ajout du Super Admin ; suppression du workflow de validation ; assignation des Formateurs par formation ; supervision de l'activité des Formateurs par l'Administrateur ; profil du Formateur visible par l'élève.</td></tr>
+  </table>
+</section>
+
+<main>
+
+<!-- ===================== 1 ===================== -->
+<h2 class="sec">1. Présentation du projet</h2>
+<h3>1.1 Contexte</h3>
+<p>Les ateliers de formation de l'entreprise font aujourd'hui face à un problème majeur : la distance. L'obligation d'une présence physique et l'éloignement des centres de formation créent des freins logistiques importants pour de nombreux participants. Cette contrainte impacte négativement l'engagement et fait baisser le taux de participation.</p>
+<h3>1.2 Problématique</h3>
+<div class="note">« Comment améliorer l'accès aux formations, tout en assurant un suivi pédagogique rigoureux et individualisé des apprenants, sans qu'ils aient besoin de se déplacer ? »</div>
+<h3>1.3 La solution</h3>
+<p>Une plateforme web E-Learning moderne et interactive, entièrement asynchrone : l'élève apprend à son rythme, où qu'il soit, sans horaires imposés ni présence physique. La plateforme dématérialise les cours (texte et vidéo), assure un suivi individualisé de la progression, et maintient l'engagement grâce à l'évaluation continue (quiz) et à la gamification (points).</p>
+<h3>1.4 Objectifs clés</h3>
+<ul>
+  <li><strong>Accessibilité</strong> — supprimer la contrainte de déplacement pour augmenter le nombre de participants</li>
+  <li><strong>Qualité pédagogique</strong> — proposer des formats de cours variés (texte, vidéo) adaptés à tous les profils</li>
+  <li><strong>Suivi individualisé</strong> — donner à l'élève et au formateur une visibilité claire et en temps réel sur la progression</li>
+  <li><strong>Engagement</strong> — stimuler la régularité des apprenants via un système de points</li>
+</ul>
+
+<!-- ===================== 2 ===================== -->
+<h2 class="sec">2. Périmètre du projet — MVP et Post-MVP</h2>
+<p><strong>MVP (Minimum Viable Product)</strong> : la version la plus réduite de la plateforme qui reste utilisable en conditions réelles — pas une démo, une vraie version livrable. Tout ce qui n'est pas indispensable au bon fonctionnement de base est repoussé en Post-MVP, pour permettre une mise en production rapide.</p>
+<table>
+  <tr><th style="width:55%">Dans le périmètre MVP</th><th>Repoussé en Post-MVP</th></tr>
+  <tr>
+    <td><ul class="tight">
+      <li>Espaces Élève, Formateur, Admin-Formateur et Administration (Administrateur + Super Admin)</li>
+      <li>Inscription et paiement en ligne</li>
+      <li>Catalogue de formations et gestion des cours — création et publication directes par l'Admin-Formateur</li>
+      <li>Contenus pédagogiques (texte, vidéo, documents)</li>
+      <li>Quiz et évaluations</li>
+      <li>Suivi de la progression (par l'élève, par son Formateur, par l'Administrateur)</li>
+      <li>Assignation des Formateurs aux formations et supervision de leur activité par l'Administrateur</li>
+      <li>Accumulation de points (gamification)</li>
+    </ul></td>
+    <td><ul class="tight">
+      <li>Catalogue de récompenses / paliers</li>
+      <li>Classement inter-apprenants (Leaderboard)</li>
+      <li>Certificats de fin de formation</li>
+      <li>Forums (un par formation)</li>
+      <li>Application mobile</li>
+    </ul></td>
+  </tr>
+</table>
+<div class="note"><strong>Ordre de priorité du Post-MVP</strong> (validé) : 1) Classement — 2) Certificats — 3) Forum — 4) Application mobile. Le Classement et les Certificats viennent en premier car ils s'appuient directement sur des briques déjà construites en MVP (points, quiz), pour un effort de développement réduit et un impact fort sur l'engagement.</div>
+
+<!-- ===================== 3 ===================== -->
+<h2 class="sec">3. Les profils utilisateurs</h2>
+<table>
+  <tr><th style="width:18%">Profil</th><th style="width:21%">Créé par</th><th>Rôle</th></tr>
+  <tr><td><span class="badge b-eleve">ÉLÈVE</span></td><td>Lui-même (inscription + paiement)</td><td>Suit les formations payées, consulte les cours, passe les quiz, suit sa progression et ses points. Voit le profil du Formateur de chaque formation suivie.</td></tr>
+  <tr><td><span class="badge b-form">FORMATEUR</span></td><td>Administrateur</td><td>Suit la progression et les résultats des élèves des formations qui lui sont assignées. Ne crée ni ne publie aucun contenu. Son activité de suivi est supervisée par l'Administrateur au moyen d'indicateurs automatiques.</td></tr>
+  <tr><td><span class="badge b-caf">ADMIN-FORMATEUR</span></td><td>Administrateur (ou Super Admin)</td><td>Crée les formations et leur contenu pédagogique (cours, leçons, documents, quiz) et les publie directement, sans validation. N'a accès à aucune donnée élève.</td></tr>
+  <tr><td><span class="badge b-admin">ADMINISTRATEUR</span></td><td>Super Admin</td><td>Supervise la plateforme : crée les Admin-Formateurs et les Formateurs, assigne les Formateurs aux formations et supervise leur activité, gère les élèves, supervise formations et statistiques.</td></tr>
+  <tr><td><span class="badge b-super">SUPER ADMIN</span></td><td>Compte unique créé au déploiement</td><td>Tous les droits de l'Administrateur, plus la création et la gestion des comptes Administrateur.</td></tr>
+</table>
+<pre class="tree">SUPER ADMIN — compte unique
+ ├── crée ─► ADMINISTRATEUR
+ │             ├── crée ─► ADMIN-FORMATEUR ── crée et publie formations, cours, quiz
+ │             ├── crée ─► FORMATEUR ─────── suit les élèves des formations assignées
+ │             ├── assigne un FORMATEUR à chaque formation
+ │             └── supervise l'activité des FORMATEURS
+ └── crée ─► ADMIN-FORMATEUR (directement, comme tout Administrateur)
+
+ÉLÈVE — s'inscrit et paie lui-même</pre>
+<p><strong>Trois règles structurantes :</strong></p>
+<ul>
+  <li><strong>Gestion des comptes hiérarchique</strong> — un rôle ne crée et ne gère que les rôles situés sous lui. Aucun compte autre qu'Élève n'est créé par inscription publique.</li>
+  <li><strong>Contenu et suivi sont séparés</strong> — l'Admin-Formateur produit le contenu et ne voit pas les élèves ; le Formateur voit les élèves et ne touche pas au contenu. Deux rôles frères, pas hiérarchisés.</li>
+  <li><strong>Un Formateur par formation</strong> — chaque formation a exactement un Formateur assigné ; un Formateur peut couvrir plusieurs formations ; la plateforme compte autant de Formateurs que nécessaire.</li>
+</ul>
+<p>Cinq rôles mais <strong>quatre espaces d'interface</strong> : Élève, Formateur, Admin-Formateur, Administration — le Super Admin utilise l'espace Administration avec un menu supplémentaire « Administrateurs ».</p>
+<p><strong>Remarque importante :</strong> les rôles <em>Commercial</em> et le système de <em>code de sécurité</em> envisagés à une étape antérieure du projet ont été abandonnés au profit d'un paiement en ligne direct (voir section 4).</p>
+
+<!-- ===================== 4 ===================== -->
+<h2 class="sec">4. Inscription, authentification et accès aux formations</h2>
+<p>L'accès à une formation est <strong>conditionné à son paiement</strong>, réalisé directement en ligne sur la plateforme. Un élève ne voit et n'accède qu'aux formations pour lesquelles il a payé — jamais l'ensemble du catalogue.</p>
+<h3>4.1 Parcours d'inscription et de paiement</h3>
+<ol class="steps">
+  <li>L'élève crée son compte (nom, prénom, email, téléphone, mot de passe) et choisit la formation qu'il souhaite suivre, dont le tarif est affiché.</li>
+  <li>Un email de vérification est envoyé — un <strong>lien magique</strong>, valable 24 heures et à usage unique (pas de code à saisir).</li>
+  <li>Une fois l'email confirmé, l'élève est redirigé vers le paiement en ligne, via <strong>PaiementPro</strong> (agrégateur déjà utilisé par ILIMIGROUP, couvrant Orange Money, Wave CI, MTN MoMo et carte bancaire).</li>
+  <li>Une fois le paiement confirmé par PaiementPro, l'accès à la formation choisie est accordé immédiatement.</li>
+  <li>Pour suivre une formation supplémentaire, l'élève (déjà connecté) sélectionne une autre formation et effectue un nouveau paiement — spécifique à celle-ci.</li>
+</ol>
+<h3>4.2 Règles de tarification</h3>
+<p><strong>Un prix unique par formation</strong>, payé en une seule fois. Pas de mensualités ni d'échéancier — un choix délibéré pour rester simple à développer et à gérer pour ce périmètre du projet.</p>
+<h3>4.3 Connexion</h3>
+<p>Authentification classique par email/mot de passe, avec un mécanisme de mot de passe oublié (email de réinitialisation).</p>
+
+<!-- ===================== 5 ===================== -->
+<h2 class="sec">5. Espace Élève</h2>
+<table>
+  <tr><th style="width:26%">Fonctionnalité</th><th>Détail</th></tr>
+  <tr><td>Catalogue personnel</td><td>Liste des formations payées/accessibles — jamais l'ensemble du catalogue public</td></tr>
+  <tr><td>Consultation des cours</td><td>Lecture des cours écrits, visionnage des vidéos, téléchargement des supports pédagogiques</td></tr>
+  <tr><td>Suivi vidéo</td><td>Une vidéo est comptée comme « terminée » à partir de <strong>80 % visionnés</strong></td></tr>
+  <tr><td>Quiz</td><td>Passage des quiz de fin de module, résultat immédiat (voir section 9 pour les règles de tentative)</td></tr>
+  <tr><td>Résultats</td><td>Consultation de l'historique de ses scores aux quiz</td></tr>
+  <tr><td>Progression</td><td>Indicateur d'avancement (%) sur chaque formation suivie</td></tr>
+  <tr><td>Points</td><td>Suivi de ses points accumulés (voir section 10)</td></tr>
+  <tr><td>Mon formateur <span class="badge b-v2">V2</span></td><td>Sur chaque formation suivie : profil du Formateur assigné (nom, photo, courte présentation). Pas de messagerie en MVP — le contact direct viendra avec le forum (Post-MVP).</td></tr>
+</table>
+
+<!-- ===================== 6 ===================== -->
+<h2 class="sec">6. Espace Formateur</h2>
+<p>Le Formateur est un rôle de <strong>suivi pédagogique pur</strong> : il observe, annote et relance ses élèves, sans aucun droit d'écriture sur le contenu des formations.</p>
+<table>
+  <tr><th style="width:26%">Fonctionnalité</th><th>Détail</th></tr>
+  <tr><td>Mes formations</td><td>Liste des formations qui lui sont assignées par l'Administrateur</td></tr>
+  <tr><td>Tableau de bord par formation</td><td>Élèves inscrits avec progression (%), dernière activité, score moyen aux quiz, marqueurs. Filtres : inactifs depuis N jours, en difficulté, à relancer</td></tr>
+  <tr><td>Fiche élève</td><td>Progression détaillée (leçons lues, vidéos terminées, modules débloqués), historique complet des quiz (note officielle et meilleure tentative), points</td></tr>
+  <tr><td>Notes de suivi</td><td>Notes privées, horodatées, par élève et par formation. Visibles par le Formateur assigné et l'Administrateur — jamais par l'élève</td></tr>
+  <tr><td>Marqueurs</td><td>Marquage d'un élève « à relancer » ou « en difficulté »</td></tr>
+  <tr><td>Relance</td><td>Envoi en un clic d'un email de relance à partir d'un modèle prédéfini ; chaque envoi est journalisé</td></tr>
+  <tr><td>Mon profil</td><td>Photo et courte présentation, visibles par les élèves de ses formations</td></tr>
+</table>
+<div class="note">Toute action de suivi (connexion, consultation d'une fiche, note, marqueur, relance) est <strong>journalisée</strong> : c'est cette trace qui alimente les indicateurs de supervision de l'Administrateur (section 7.3). Il n'existe ni note ni évaluation formelle du Formateur.</div>
+
+<!-- ===================== 7 ===================== -->
+<h2 class="sec">7. Espace Administration (Administrateur et Super Admin)</h2>
+<h3>7.1 Gestion des comptes</h3>
+<table>
+  <tr><th style="width:22%">Comptes</th><th>Actions</th><th style="width:30%">Par qui</th></tr>
+  <tr><td>Administrateurs</td><td>Création, activation/désactivation</td><td>Super Admin uniquement</td></tr>
+  <tr><td>Admin-Formateurs</td><td>Création, activation/désactivation</td><td>Administrateur, Super Admin</td></tr>
+  <tr><td>Formateurs</td><td>Création, activation/désactivation</td><td>Administrateur, Super Admin</td></tr>
+  <tr><td>Élèves</td><td>Liste, activation/désactivation, suppression</td><td>Administrateur, Super Admin</td></tr>
+</table>
+<h3>7.2 Assignation des Formateurs</h3>
+<ul>
+  <li>Chaque formation a <strong>un seul</strong> Formateur assigné (aucun tant que l'Administrateur n'a pas procédé à l'assignation). Un Formateur peut couvrir plusieurs formations.</li>
+  <li>L'assignation ouvre au Formateur le suivi de tous les élèves de la formation, présents et futurs.</li>
+  <li>Réassignation : l'ancien Formateur perd l'accès ; les notes de suivi restent attachées au couple élève/formation et passent au nouveau Formateur.</li>
+  <li>Le tableau de bord signale les formations publiées sans Formateur.</li>
+</ul>
+<h3>7.3 Supervision de l'activité des Formateurs</h3>
+<p>Pas de notation. L'Administrateur dispose, pour chaque Formateur, d'un tableau de bord d'activité alimenté automatiquement par le journal (section 6). Aucune note ni commentaire n'est saisi ni enregistré.</p>
+<table>
+  <tr><th style="width:24%">Indicateur</th><th>Détail</th></tr>
+  <tr><td>Élèves suivis</td><td>Formations assignées et nombre total d'élèves inscrits à ces formations</td></tr>
+  <tr><td>Régularité du suivi</td><td>Dernière connexion ; nombre de jours d'activité sur les 30 derniers jours</td></tr>
+  <tr><td>Couverture</td><td>Fiches élèves consultées sur 30 jours ; part des élèves de ses formations consultés au moins une fois sur la période</td></tr>
+  <tr><td>Actions</td><td>Notes rédigées, marqueurs posés, relances envoyées sur 30 jours</td></tr>
+  <tr><td>Points d'attention</td><td>Élèves inactifs depuis plus de 14 jours et jamais relancés, par formation</td></tr>
+</table>
+<p>La liste des Formateurs est triable par dernière connexion et par niveau d'activité ; un Formateur sans connexion depuis 7 jours y est signalé. Les seuils (30, 14, 7 jours) sont des valeurs par défaut, ajustables. Ces indicateurs ne sont visibles que dans l'espace Administration.</p>
+<h3>7.4 Supervision des formations</h3>
+<ul>
+  <li>Vue d'ensemble de toutes les formations et cours, tous statuts confondus, avec leur auteur (Admin-Formateur) et leur Formateur assigné.</li>
+  <li><strong>Dépublication</strong> : l'Administrateur peut retirer de la publication un cours ou une formation (retour en brouillon) avec un motif transmis à l'Admin-Formateur. Contrôle a posteriori, qui remplace la validation a priori de la v1.</li>
+  <li>Vue globale de la progression des élèves, toutes formations confondues.</li>
+</ul>
+<h3>7.5 Statistiques globales</h3>
+<p>Nombre d'élèves, de Formateurs, d'Admin-Formateurs, de formations publiées ; progression moyenne par formation ; élèves inactifs.</p>
+
+<!-- ===================== 8 ===================== -->
+<h2 class="sec">8. Espace Admin-Formateur — Gestion des formations et des cours</h2>
+<p>L'Admin-Formateur est l'<strong>unique auteur</strong> du contenu pédagogique et publie <strong>directement, sans validation préalable</strong>. En contrepartie, il n'a accès à aucune donnée élève — ni liste, ni progression, ni résultats.</p>
+<h3>8.1 Fonctionnalités</h3>
+<table>
+  <tr><th style="width:24%">Fonctionnalité</th><th>Détail</th></tr>
+  <tr><td>Formations</td><td>Création : titre, description, image, prix unique (cf. section 4.2)</td></tr>
+  <tr><td>Cours</td><td>Création des cours (modules) d'une formation, ordonnés</td></tr>
+  <tr><td>Leçons</td><td>Ajout de leçons texte, vidéos et documents téléchargeables</td></tr>
+  <tr><td>Quiz</td><td>Création des QCM de fin de cours : questions, réponses, seuil de réussite</td></tr>
+  <tr><td>Publication</td><td>Publication, modification et archivage directs</td></tr>
+  <tr><td>Périmètre</td><td>Catalogue partagé entre Admin-Formateurs : chacun peut intervenir sur toute formation ; l'auteur de chaque élément est tracé</td></tr>
+</table>
+<h3>8.2 Statuts et cycle de vie</h3>
+<table>
+  <tr><th style="width:16%">Statut</th><th>Formation</th><th>Cours</th></tr>
+  <tr><td><em>Brouillon</em></td><td>Invisible hors espaces Admin-Formateur et Administration</td><td>Idem</td></tr>
+  <tr><td><em>Publié</em></td><td>Visible au catalogue, achetable</td><td>Visible par les élèves inscrits à la formation</td></tr>
+  <tr><td><em>Archivé</em></td><td>Retirée du catalogue (plus d'achat) ; les élèves déjà inscrits conservent l'accès</td><td>Masqué aux élèves ; leur progression est conservée</td></tr>
+</table>
+<table>
+  <tr><th style="width:34%">Action de l'Admin-Formateur</th><th>Effet</th></tr>
+  <tr><td>Publier</td><td>Immédiat</td></tr>
+  <tr><td>Modifier un élément publié</td><td>Immédiat, visible directement par les élèves — pas de versionnage</td></tr>
+  <tr><td>Archiver</td><td>Immédiat, réversible</td></tr>
+  <tr><td>Supprimer</td><td>Définitif — uniquement si aucun élève n'est inscrit ; sinon archivage</td></tr>
+</table>
+<div class="note">La v1 imposait un statut « en attente », une version publiée maintenue en parallèle de la version modifiée, et des motifs de refus. Tout cela disparaît : le contrôle de l'Administrateur s'exerce a posteriori, par dépublication (section 7.4).</div>
+
+<!-- ===================== 9 ===================== -->
+<h2 class="sec">9. Quiz et évaluations</h2>
+<p>Les quiz sont créés par l'Admin-Formateur (section 8) et passés par les élèves à la fin de chaque cours.</p>
+<h3>9.1 Règle des tentatives</h3>
+<table>
+  <tr><th style="width:44%">Ce qui est mesuré</th><th>Base de calcul</th></tr>
+  <tr><td>Note / score officiel (historique, points)</td><td>Toujours celle de la <strong>première tentative</strong></td></tr>
+  <tr><td>Déblocage du module suivant</td><td>Dépend de la <strong>meilleure tentative</strong> — l'élève peut retenter autant de fois qu'il le souhaite</td></tr>
+</table>
+<div class="note">Exemple concret : un élève échoue à sa 1ère tentative (8/20), retente et réussit à la 3ᵉ tentative (16/20). Il débloque le module suivant, mais sa note officielle affichée dans son historique reste 8/20.</div>
+<h3>9.2 Correction</h3>
+<p>Correction automatique des QCM, calcul du score et restitution immédiate à l'élève après soumission.</p>
+
+<!-- ===================== 10 ===================== -->
+<h2 class="sec">10. Gamification — Points et récompenses</h2>
+<table>
+  <tr><th style="width:16%">Périmètre</th><th>Détail</th></tr>
+  <tr><td><span class="badge b-mvp">MVP</span></td><td>Attribution automatique de points selon les cours complétés et les scores obtenus aux quiz. Points visibles sur le tableau de bord de l'élève.</td></tr>
+  <tr><td><span class="badge b-post">POST-MVP</span></td><td>Catalogue de récompenses : définition de paliers de points et des cadeaux associés, conversion des points en récompense.</td></tr>
+</table>
+
+<!-- ===================== 11 ===================== -->
+<h2 class="sec">11. Fonctionnalités Post-MVP (par ordre de priorité)</h2>
+<h3>11.1 <span class="badge b-p">PRIORITÉ 1</span> — Classement inter-apprenants</h3>
+<p>Deux classements distincts : un <strong>classement global</strong> (tous élèves, toutes formations confondues) et un <strong>classement par formation</strong> (points gagnés sur cette formation uniquement).</p>
+<h3>11.2 <span class="badge b-p">PRIORITÉ 2</span> — Certificats</h3>
+<p><strong>Éligibilité</strong> : l'élève doit avoir réussi tous les quiz de la formation (peu importe le nombre de tentatives, seule la réussite finale compte).</p>
+<p><strong>Déclenchement</strong> : génération <strong>manuelle</strong>, déclenchée par l'<strong>Administrateur</strong> pour une formation donnée — pas de génération automatique en temps réel.</p>
+<p><strong>Retardataires</strong> : un élève qui n'a pas terminé au moment du déclenchement groupé reçoit son certificat individuellement, dès qu'il termine ses quiz restants.</p>
+<h3>11.3 <span class="badge b-p">PRIORITÉ 3</span> — Forum</h3>
+<ul>
+  <li><strong>Un forum par formation</strong> (pas de forum global unique, pas de distinction « apprenants » / « classe »)</li>
+  <li><strong>Adhésion automatique</strong> : dès qu'un élève accède à une formation (paiement confirmé), il rejoint automatiquement le forum de cette formation. Le <strong>Formateur assigné</strong> à la formation y est présent en permanence ; l'Admin-Formateur n'y participe pas.</li>
+  <li><strong>Participation libre</strong> : élèves et Formateur peuvent tous lire, écrire et envoyer des messages sans restriction entre eux.</li>
+  <li><strong>Modération</strong> : uniquement par l'Administrateur (supervision, suppression de message, exclusion si besoin). Le Formateur n'a pas de pouvoir de modération.</li>
+</ul>
+<h3>11.4 <span class="badge b-p">PRIORITÉ 4</span> — Application mobile</h3>
+<p>Vient logiquement en dernier : elle dépend d'une API backend stable et éprouvée. Le découplage Frontend / Backend déjà en place (Next.js consommant l'API Nest.js) rend cette déclinaison possible sans reprendre le backend.</p>
+
+<!-- ===================== 12 ===================== -->
+<h2 class="sec">12. Architecture technique</h2>
+<table>
+  <tr><th style="width:20%">Composant</th><th style="width:18%">Technologie</th><th>Rôle</th></tr>
+  <tr><td>Frontend</td><td>Next.js</td><td>Interface utilisateur, rendu côté serveur (SSR) pour le SEO et les performances</td></tr>
+  <tr><td>Backend</td><td>Nest.js</td><td>API REST, toute la logique métier, sécurité et autorisation par rôle</td></tr>
+  <tr><td>Base de données</td><td>MongoDB</td><td>Stockage flexible adapté aux cours, quiz, progression, points</td></tr>
+  <tr><td>Paiement</td><td>PaiementPro</td><td>Agrégateur de paiement (Orange Money, Wave CI, MTN MoMo, carte) déjà utilisé par ILIMIGROUP</td></tr>
+  <tr><td>Stockage de fichiers</td><td>Cloudflare R2</td><td>Documents, images et vidéos uploadés (compatible S3, sans frais de sortie)</td></tr>
+</table>
+<div class="note">Frontend et Backend sont totalement découplés — communication uniquement via API REST. Ce découplage rend possible une future application mobile sans reprendre le backend.</div>
+<h3>12.1 Rôles applicatifs</h3>
+<table>
+  <tr><th style="width:40%">Libellé interface</th><th>Identifiant technique</th></tr>
+  <tr><td>Super Admin</td><td><code>SUPER_ADMIN</code></td></tr>
+  <tr><td>Administrateur</td><td><code>ADMIN</code></td></tr>
+  <tr><td>Admin-Formateur</td><td><code>CONTENT_ADMIN</code></td></tr>
+  <tr><td>Formateur</td><td><code>TUTOR</code></td></tr>
+  <tr><td>Élève</td><td><code>STUDENT</code></td></tr>
+</table>
+<p>Autorisation par permissions explicites par rôle — pas d'héritage linéaire, puisque Formateur et Admin-Formateur ont des périmètres disjoints. Seule la gestion des comptes est hiérarchique (section 3). Le Super Admin cumule toutes les permissions de l'Administrateur.</p>
+<h3>12.2 Impacts sur le modèle de données</h3>
+<ul>
+  <li><code>Formation</code> : <code>formateurId</code> (un seul Formateur, vide tant que non assignée), <code>createdBy</code> (Admin-Formateur), <code>statut</code>, <code>prix</code></li>
+  <li><code>Cours</code> / <code>Leçon</code> / <code>Quiz</code> : <code>statut</code> ∈ {brouillon, publié, archivé} — plus de version « en attente », pas de versionnage</li>
+  <li><code>Inscription</code> (élève × formation) : progression, marqueur (à relancer / en difficulté)</li>
+  <li>Nouveau : <code>NoteDeSuivi</code> (élève, formation, formateur, texte, date)</li>
+  <li>Nouveau : <code>JournalActivite</code> (formateur, action, cible, date) — connexion, consultation de fiche, note, marqueur, relance ; alimente les indicateurs de la section 7.3</li>
+  <li><code>Utilisateur</code> : <code>role</code> parmi les 5 valeurs ; profil Formateur (photo, présentation)</li>
+</ul>
+
+<!-- ===================== 13 ===================== -->
+<h2 class="sec">13. Design et direction artistique</h2>
+<ul>
+  <li><strong>Style visuel</strong> : moderne, épuré et minimaliste, pour faciliter la concentration et la lecture prolongée de contenus pédagogiques</li>
+  <li><strong>Teintes principales</strong> : couleurs neutres et sobres (blanc, gris clair, bleu profond) pour la structure, la typographie et la navigation</li>
+  <li><strong>Teintes d'accentuation</strong> : couleurs vives (jaune/or, vert, orange) réservées aux éléments interactifs — badges, jauges de progression, boutons d'action</li>
+  <li><strong>Responsive</strong> : interface mobile-first, garantissant une expérience fluide sur ordinateur, tablette et smartphone</li>
+</ul>
+
+<!-- ===================== 14 ===================== -->
+<h2 class="sec">14. Synthèse du périmètre</h2>
+<table>
+  <tr><th style="width:30%">Sujet</th><th>Décision retenue</th></tr>
+  <tr><td>Inscription</td><td>Compte élève + choix de formation + email de vérification (lien magique)</td></tr>
+  <tr><td>Accès aux formations</td><td>Conditionné au paiement, formation par formation</td></tr>
+  <tr><td>Paiement</td><td>PaiementPro (Mobile Money + carte), prix unique par formation</td></tr>
+  <tr><td>Code de sécurité / rôle Commercial</td><td><span class="badge b-sup">SUPPRIMÉS</span> — remplacés par le paiement en ligne</td></tr>
+  <tr><td>Rôles</td><td><span class="badge b-mvp">MVP</span> — 5 rôles (Élève, Formateur, Admin-Formateur, Administrateur, Super Admin), 4 espaces d'interface</td></tr>
+  <tr><td>Contenu pédagogique</td><td>Créé et publié directement par l'Admin-Formateur, sans validation ; dépublication possible par l'Administrateur</td></tr>
+  <tr><td>Suivi des élèves</td><td>Formateur (un par formation, assigné par l'Administrateur) et Administrateur ; jamais l'Admin-Formateur</td></tr>
+  <tr><td>Supervision des Formateurs</td><td><span class="badge b-mvp">MVP</span> — par l'Administrateur : indicateurs d'activité automatiques (élèves suivis, régularité, relances), sans notation</td></tr>
+  <tr><td>Profil du Formateur</td><td><span class="badge b-mvp">MVP</span> — visible par l'élève sur son tableau de bord</td></tr>
+  <tr><td>Points</td><td><span class="badge b-mvp">MVP</span> — accumulation automatique</td></tr>
+  <tr><td>Catalogue de récompenses</td><td><span class="badge b-post">POST-MVP</span></td></tr>
+  <tr><td>Tentatives de quiz</td><td>Note = 1ère tentative · Déblocage = meilleure tentative</td></tr>
+  <tr><td>Suivi vidéo</td><td>Tracké, seuil de complétion à 80 %</td></tr>
+  <tr><td>Classement</td><td><span class="badge b-post">POST-MVP</span> — priorité 1 — global + par formation</td></tr>
+  <tr><td>Certificats</td><td><span class="badge b-post">POST-MVP</span> — priorité 2 — génération manuelle groupée, déclenchée par l'Administrateur</td></tr>
+  <tr><td>Forum</td><td><span class="badge b-post">POST-MVP</span> — priorité 3 — un par formation, Formateur présent, modération Administrateur</td></tr>
+  <tr><td>Application mobile</td><td><span class="badge b-post">POST-MVP</span> — priorité 4</td></tr>
+</table>
+<p class="footer">ILIMIGROUP — Cahier des charges Plateforme E-Learning — v2 — Document de référence, à mettre à jour au fil des évolutions du projet</p>
+
+</main>
+</div>
+
+<script>
+  // Date de couverture : mois courant à l'ouverture. Pour figer une date, remplacer le texte du span et supprimer ce script.
+  (function () {
+    var m = new Date().toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+    document.getElementById('date').textContent = 'VERSION 2 · ' + m.toUpperCase();
+  })();
+</script>
+</body>
+</html>
