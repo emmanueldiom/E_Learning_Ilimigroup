@@ -15,6 +15,7 @@ import { RegisterDto } from '../../dto/auth/register.dto';
 import { ResetPasswordDto } from '../../dto/auth/reset-password.dto';
 import { User, UserDocument } from '../../schemas/user.schema';
 import { MailService } from './notification/mail.service';
+import { Role } from '../../common/enums/role.enum';
 
 const EMAIL_VERIFICATION_EXPIRES_MINUTES = 24 * 60; // 24h — cohérent avec le cahier des charges
 const PASSWORD_RESET_EXPIRES_MINUTES = 60; // 1h
@@ -50,6 +51,7 @@ export class AuthService {
 
 		const user = await this.userModel.create({
 			...registerDto,
+			role: Role.ETUDIANT,
 			password: hashedPassword,
 			isEmailVerified: false,
 			emailVerificationTokenHash: tokenHash,
@@ -89,10 +91,9 @@ export class AuthService {
 		user.emailVerificationExpires = undefined;
 		await user.save();
 
-		// Le lien vérifié connecte directement l'élève — cohérent avec le parcours
-		// « email confirmé → choix du mode de paiement » du cahier des charges.
-		const tokens = await this.generateAuthTokens(user);
-		return { ...tokens, user: this.toPublicUser(user) };
+		return {
+			message: 'Adresse email vérifiée. Vous pouvez maintenant vous connecter.',
+		};
 	}
 
 	// ---------------------------------------------------------------------

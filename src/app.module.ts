@@ -5,8 +5,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { envValidationSchema } from './config/env.validation';
 import { AuthModule } from './modules/auth/auth.module';
-import { AuthGuard } from './guards/auth.guard'; // ajuste le chemin selon ta structure
-
+import { GuardsModule } from './guards/guards.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './guards/auth.guard';
+import { RolesGuard } from './guards/roles.guard';
 
 @Module({
   imports: [
@@ -22,8 +24,13 @@ import { AuthGuard } from './guards/auth.guard'; // ajuste le chemin selon ta st
       }),
     }),
     AuthModule,
+    GuardsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    { provide: APP_GUARD, useExisting: AuthGuard },
+    { provide: APP_GUARD, useExisting: RolesGuard },
+  ],
 })
 export class AppModule {}
