@@ -6,7 +6,6 @@ export enum Permission {
 	ETUDIANT_QUIZ = 'student:quizzes',
 	ETUDIANT_PROGRESSION = 'student:progress',
 	ETUDIANT_POINTS = 'student:points',
-	ETUDIANT_PAIEMENTS = 'student:payments',
 
 	FORMATEUR_ETUDIANTS = 'tutor:students',
 	FORMATEUR_PROGRESSION = 'tutor:progress',
@@ -14,6 +13,11 @@ export enum Permission {
 	FORMATEUR_NOTES = 'tutor:notes',
 	FORMATEUR_MARQUEURS = 'tutor:markers',
 	FORMATEUR_RELANCES = 'tutor:reminders',
+
+	COMMERCIAL_CODES = 'commercial:security-codes',
+	COMMERCIAL_ATTRIBUTION_CODES = 'commercial:code-assignment',
+	COMMERCIAL_HISTORIQUE_CODES = 'commercial:code-history',
+	COMMERCIAL_DEMANDE_CODES = 'commercial:code-request',
 
 	CONTENU_FORMATIONS = 'content:trainings',
 	CONTENU_COURS = 'content:courses',
@@ -35,7 +39,6 @@ const permissionsEtudiant = [
 	Permission.ETUDIANT_QUIZ,
 	Permission.ETUDIANT_PROGRESSION,
 	Permission.ETUDIANT_POINTS,
-	Permission.ETUDIANT_PAIEMENTS,
 ];
 
 const permissionsFormateur = [
@@ -45,6 +48,13 @@ const permissionsFormateur = [
 	Permission.FORMATEUR_NOTES,
 	Permission.FORMATEUR_MARQUEURS,
 	Permission.FORMATEUR_RELANCES,
+];
+
+const permissionsCommercial = [
+	Permission.COMMERCIAL_CODES,
+	Permission.COMMERCIAL_ATTRIBUTION_CODES,
+	Permission.COMMERCIAL_HISTORIQUE_CODES,
+	Permission.COMMERCIAL_DEMANDE_CODES,
 ];
 
 const permissionsAdminContenu = [
@@ -66,6 +76,7 @@ const permissionsAdministrateur = [
 export const PERMISSIONS_PAR_ROLE: Record<Role, readonly Permission[]> = {
 	[Role.ETUDIANT]: permissionsEtudiant,
 	[Role.FORMATEUR]: permissionsFormateur,
+	[Role.COMMERCIAL]: permissionsCommercial,
 	[Role.ADMIN_CONTENU]: permissionsAdminContenu,
 	[Role.ADMINISTRATEUR]: permissionsAdministrateur,
 	[Role.SUPER_ADMINISTRATEUR]: [

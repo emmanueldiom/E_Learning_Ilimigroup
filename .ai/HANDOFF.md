@@ -2,13 +2,13 @@
 
 > **Ce fichier doit être mis à jour à la fin de chaque session de travail.** Il permet à la prochaine session (toi ou un assistant IA) de reprendre exactement où on s'est arrêté, sans avoir à tout redemander.
 
-**Dernière mise à jour :** 2026-09-02 — par Emmanuel
+**Dernière mise à jour :** 2026-09-17 — contexte métier v4 synchronisé
 
 ---
 
 ## 1. Où en est le projet, en une phrase
 
-Le cahier des charges et le planning des sprints sont finalisés. Le backend est scaffoldé (Nest.js de base) mais aucun module métier n'est encore développé. On est au tout début du **Sprint 0 — Infrastructure & Initialisation**.
+Le cahier des charges et le planning des sprints sont finalisés. Les sprints B0, B1, B2 et B3 sont validés. Le travail reprend sur **B4-01**, première tâche du Sprint B4.
 
 ## 2. Ce qui est fait
 
@@ -29,21 +29,23 @@ Terminer le **Sprint 0** :
 - [ ] Créer les dossiers de la nouvelle convention : `src/schemas/`, `src/dto/`, `src/public/`, `src/admin/`, `src/guards/`
 - [ ] Configurer la connexion MongoDB Atlas (`MongooseModule.forRootAsync`)
 - [ ] Créer le bucket Cloudflare R2 + configurer le SDK compatible S3 dans `src/storage/`
-- [ ] Créer le compte marchand PaiementPro (sandbox) et noter les clés API dans `.env.example` (sans les valeurs réelles)
 - [ ] Configurer ESLint / Prettier
 
-Puis démarrer le **Sprint 1 — Élève : Inscription, Authentification & Paiement** (détail complet dans le planning Excel).
+Puis démarrer le **Sprint B4 — Disciplines / Modules / Leçons / Ressources**. Les exercices sont rattachés aux leçons et seront traités dans B8. Les Sprints B5-B7 viennent ensuite pour les inscriptions, l'accès et les codes de sécurité.
 
 ## 5. Décisions actées à ne pas remettre en question sans raison
 
-- Pas de code de sécurité, pas de rôle Commercial — paiement en ligne direct via **PaiementPro**
+- Paiement exclusivement en personne auprès d'un Commercial ; aucun agrégateur, webhook ou traitement d'argent dans l'application
+- Le Commercial reçoit des codes de sécurité et peut les attribuer ou les tracer ; l'élève consomme un code valide pour débloquer une formation
+- Hiérarchie pédagogique obligatoire : **Formation → Discipline → Module → Leçon → Ressources / Exercices**
+- Une ressource et un exercice appartiennent toujours à une leçon ; un module appartient à une discipline et une discipline à une formation
 - Email de vérification = **lien magique**, pas d'OTP à saisir
-- **Un prix unique par formation**, pas de mensualités
-- Toute publication/modification/suppression de cours par un formateur passe par une **validation Admin**
+- Prix et versements définis au niveau de la formation ; l'accès est débloqué par code, avec échéancier si nécessaire
+- L'Admin-Formateur publie directement le contenu ; l'Administrateur intervient a posteriori pour dépublier avec un motif
 - Quiz : note officielle = 1ère tentative, déblocage du module suivant = meilleure tentative (retries illimités)
 - Vidéo comptée "terminée" à partir de **80 %** visionnés
 - Convention de dossiers **par type** (`schemas/`, `dto/`, `public/`, `admin/`, `guards/`), pas un dossier par module métier
-- Ordre de développement : **Élève → Formateur → Admin**, puis Post-MVP dans l'ordre Classement → Certificats → Forum → App mobile
+- Ordre de développement : **B3 Formation → B4 Discipline/Module/Leçon/Ressource → B5 Accès → B6-B7 Codes → B8 Exercices/Évaluations → B9 Progression → B10 Points**, puis Formateur, Administration et Post-MVP
 
 *(Détail complet de chaque décision : voir `AI_CONTEXT.md` et le cahier des charges.)*
 
@@ -65,4 +67,6 @@ Puis démarrer le **Sprint 1 — Élève : Inscription, Authentification & Paiem
 
 | Date | Ce qui a été fait |
 |---|---|
-| 2026-09-02 | Finalisation du cahier des charges (paiement PaiementPro, workflow validation Admin, règles quiz/vidéo/gamification). Création du planning Excel (14 sprints, 89 tâches). Rédaction de `AI_CONTEXT.md` et `ARCHITECTURE.md`. |
+| 2026-09-17 | Synchronisation v4 : abandon du paiement en ligne au profit du paiement en personne auprès d'un Commercial, ajout puis validation du rôle `COMMERCIAL` et des tâches RBAC `B2-11`/`B2-12`. |
+| 2026-09-17 | Alignement documentaire sur la hiérarchie pédagogique du workplan : Formation → Discipline → Module → Leçon → Ressources / Exercices. |
+| 2026-09-17 | Implémentation complète du Sprint B3 : schéma, règles de formation, publication, catalogue, accès étudiant, versements et assignation Formateur. Prochaine tâche : B4-01. |
