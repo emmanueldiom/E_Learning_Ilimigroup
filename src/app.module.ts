@@ -10,6 +10,10 @@ import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './guards/auth.guard';
 import { RolesGuard } from './guards/roles.guard';
 import { FormationsModule } from './modules/formations/formations.module';
+import { DisciplinesModule } from './modules/disciplines/disciplines.module';
+import { ModulesModule } from './modules/modules/modules.module';
+import { LessonsModule } from './modules/lessons/lessons.module';
+import { ResourcesModule } from './modules/resources/resources.module';
 
 @Module({
   imports: [
@@ -26,6 +30,10 @@ import { FormationsModule } from './modules/formations/formations.module';
     }),
     AuthModule,
     FormationsModule,
+    DisciplinesModule,
+    ModulesModule,
+    LessonsModule,
+    ResourcesModule,
     GuardsModule,
   ],
   controllers: [AppController],
