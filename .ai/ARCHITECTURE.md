@@ -223,13 +223,13 @@ Un import circulaire (Module A importe B qui importe A) fait planter le démarra
 | `DisciplinesModule` | `FormationsModule` | rattache chaque discipline à une formation et respecte son ordre |
 | `ModulesModule` | `DisciplinesModule` | rattache chaque module à une discipline et respecte son ordre |
 | `LessonsModule` | `ModulesModule`, `StorageModule` | rattache chaque leçon à un module ; gère le contenu et les uploads |
-| `ResourcesModule` | `LessonsModule`, `StorageModule` | rattache les ressources à une leçon et gère les fichiers R2 |
+| `ResourcesModule` | `LessonsModule`, `StorageModule` | rattache les ressources à une leçon et gère les fichiers stockés localement |
 | `ExercisesModule` | `LessonsModule`, `ProgressModule`, `GamificationModule` | rattache chaque exercice à une leçon ; crée un `Progress` et attribue les points |
 | `ProgressModule` | — | autonome, exporté pour `ExercisesModule` et `CertificatesModule` |
 | `GamificationModule` | `UsersModule` | met à jour `pointsTotal` |
 | `LeaderboardModule` *(Post-MVP)* | `UsersModule` | lecture du classement par points |
 | `ForumModule` *(Post-MVP)* | `FormationsModule` | rattache les discussions à une formation |
-| `CertificatesModule` *(Post-MVP)* | `ProgressModule`, `FormationsModule`, `StorageModule` | détecte l'éligibilité, génère et stocke le PDF |
+| `CertificatesModule` *(Post-MVP)* | `ProgressModule`, `FormationsModule`, `StorageModule` | détecte l'éligibilité, génère et stocke le PDF localement |
 | `AdminModule` | tous les modules `public/` dont il expose un controller admin | réutilise leurs services, n'a aucune logique propre |
 
 **Règle à retenir** : un module ne doit jamais importer un module qui se trouve « au-dessus » de lui dans cette table. Si `FormationsModule` semblait avoir besoin de connaître `ExercisesModule`, c'est le signal que cette logique doit vivre ailleurs (un service qui orchestre les deux), pas dans l'un des deux modules.

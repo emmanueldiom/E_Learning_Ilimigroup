@@ -3,10 +3,16 @@ import {
 	Controller,
 	Delete,
 	Get,
+	BadRequestException,
 	Param,
 	Patch,
 	Post,
+	StreamableFile,
+	UploadedFile,
+	UseInterceptors,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { Request } from 'express';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { Roles } from '../../common/decorators/roles.decorator';
 import { Role } from '../../common/enums/role.enum';
@@ -30,14 +36,56 @@ export class ResourcesController {
 		return this.resourcesService.findOne(id);
 	}
 
+	@Get(':id/file')
+	@Roles(Role.ADMIN_CONTENU, Role.ADMINISTRATEUR)
+	async download(@Param('id') id: string): Promise<StreamableFile> {
+		const file = await this.resourcesService.getUploadedFile(id);
+		return new StreamableFile(file.stream, {
+			type: file.mimetype,
+			 disposition: `attachment; filename="${file.filename}"`,
+		});
+	}
+
 	@Post('lesson/:lessonId')
+	@UseInterceptors(
+		FileInterceptor('file', {
+			limits: { fileSize: 50 * 1024 * 1024 },
+			fileFilter: (_request: Request, file, callback) => {
+				const allowedMimeTypes = new Set([
+					'application/pdf',
+					'application/zip',
+					'application/x-zip-compressed',
+					'application/vnd.rar',
+					'application/x-rar-compressed',
+					'application/msword',
+					'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+					'text/plain',
+					'video/mp4',
+					'video/webm',
+					'video/quicktime',
+				]);
+
+				if (!allowedMimeTypes.has(file.mimetype)) {
+					callback(new BadRequestException('Type de fichier non autorise'), false);
+					return;
+				}
+
+				callback(null, true);
+			},
+		}),
+	)
 	@Roles(Role.ADMIN_CONTENU)
-	create(
+	async create(
 		@Param('lessonId') lessonId: string,
 		@Body() dto: CreateResourceDto,
 		@CurrentUser('sub') userId: string,
+		@UploadedFile() file: { buffer?: Buffer; originalname?: string; mimetype?: string } | undefined,
 	) {
-		return this.resourcesService.create(lessonId, dto, userId);
+		if (!file && !dto.url) {
+			throw new BadRequestException('Un fichier ou une URL est requis');
+		}
+
+		return this.resourcesService.create(lessonId, dto, userId, file);
 	}
 
 	@Patch(':id')

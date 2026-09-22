@@ -28,7 +28,7 @@ Le cahier des charges et le planning des sprints sont finalisés. Les sprints B0
 Terminer le **Sprint 0** :
 - [ ] Créer les dossiers de la nouvelle convention : `src/schemas/`, `src/dto/`, `src/public/`, `src/admin/`, `src/guards/`
 - [ ] Configurer la connexion MongoDB Atlas (`MongooseModule.forRootAsync`)
-- [ ] Créer le bucket Cloudflare R2 + configurer le SDK compatible S3 dans `src/storage/`
+- [ ] Créer le dossier de stockage local `uploads/` et configurer le service de fichier local dans `src/storage/`
 - [ ] Configurer ESLint / Prettier
 
 Puis démarrer le **Sprint B4 — Disciplines / Modules / Leçons / Ressources**. Les exercices sont rattachés aux leçons et seront traités dans B8. Les Sprints B5-B7 viennent ensuite pour les inscriptions, l'accès et les codes de sécurité.

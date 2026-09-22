@@ -419,7 +419,7 @@ B4-13
 
 Uploads
 
-Upload et gestion des fichiers de ressources vers Cloudflare R2 (MIME, taille, URL sécurisée)
+Upload et gestion locale des fichiers de ressources sur disque (MIME, taille, URL sécurisée)
 
 Haute
 

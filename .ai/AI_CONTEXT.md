@@ -48,7 +48,7 @@ Une plateforme web où un élève **s'inscrit et vérifie son compte en ligne**,
 - Validation env : Joi — Validation DTOs : `class-validator` / `class-transformer`
 - Auth : JWT (`@nestjs/jwt`), `AuthGuard` manuel (pas global)
 - Email : `mail/mail.service.ts` (nodemailer) — lien de vérification, réinitialisation de mot de passe, rappels d'échéance
-- Stockage fichiers : Cloudflare R2 (SDK compatible S3)
+- Stockage fichiers : stockage local sur disque du serveur (dossier uploads dédié)
 - Tests : Jest + ts-jest
 - Frontend (dossier séparé) : Next.js, consomme cette API en REST
 
