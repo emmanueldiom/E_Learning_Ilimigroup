@@ -447,59 +447,59 @@ MongoDB/Mongoose : ne pas reproduire la logique relationnelle SQL du PDF avec de
 
 ### Sprint B5 — Inscriptions & Accès aux formations
 
-**Dépendance : B4** | **Avancement : 0/9 tâches validées**
+**Dépendance : B4** | **Avancement : 8/9 tâches validées**
 
 | ID | Module | Description de la Tâche | Priorité | Dép. | Statut |
 
 |---|---|---|---|---|---|
 
-| `B5-01` | Enrollments | Créer le schéma Mongoose Enrollment (studentId, formationId, progress, status, marker, paymentPlanId) | Critique | B4 | ⏳ À faire |
+| `B5-01` | Enrollments | Créer le schéma Mongoose Enrollment (studentId, formationId, progress, status, marker, échéance du prochain versement) | Critique | B4 | ✅ Validé |
 
-| `B5-02` | Enrollments | Inscrire un étudiant à une formation (après paiement) | Critique | B4 | ⏳ À faire |
+| `B5-02` | Enrollments | Inscrire un étudiant à une formation (après paiement) | Critique | B4 | ✅ Validé |
 
-| `B5-03` | Enrollments | Vérifier l'inscription d'un étudiant à une formation | Critique | B4 | ⏳ À faire |
+| `B5-03` | Enrollments | Vérifier l'inscription d'un étudiant à une formation | Critique | B4 | ✅ Validé |
 
-| `B5-04` | Enrollments | Suspendre l'accès (retard de paiement) | Critique | B4 | ⏳ À faire |
+| `B5-04` | Enrollments | Suspendre l'accès (retard de paiement) | Critique | B4 | ✅ Validé |
 
-| `B5-05` | Enrollments | Restaurer l'accès (paiement régularisé) | Critique | B4 | ⏳ À faire |
+| `B5-05` | Enrollments | Restaurer l'accès (paiement régularisé) | Critique | B4 | ✅ Validé |
 
-| `B5-06` | Enrollments | Endpoint : formations d'un étudiant | Critique | B4 | ⏳ À faire |
+| `B5-06` | Enrollments | Endpoint : formations d'un étudiant | Critique | B4 | ✅ Validé |
 
-| `B5-07` | Enrollments | Endpoint : étudiants d'une formation | Critique | B4 | ⏳ À faire |
+| `B5-07` | Enrollments | Endpoint : étudiants d'une formation | Critique | B4 | ✅ Validé |
 
-| `B5-08` | Access | Développer AccessControlService (inscription + paiement + statut + suspension) | Critique | B4 | ⏳ À faire |
+| `B5-08` | Access | Développer AccessControlService (inscription + paiement + statut + suspension) | Critique | B4 | ✅ Validé |
 
-| `B5-09` | Tests | Tests unitaires EnrollmentService | Haute | B4 | ⏳ À faire |
+
 
 
 
 ### Sprint B6 — Codes de sécurité — Génération & Distribution
 
-**Dépendance : B5** | **Avancement : 0/11 tâches validées**
+**Dépendance : B5** | **Avancement : 10/11 tâches validées**
 
 | ID | Module | Description de la Tâche | Priorité | Dép. | Statut |
 
 |---|---|---|---|---|---|
 
-| `B6-01` | CodeSecurite | Créer le schéma Mongoose CodeSecurite (formationId, numeroVersement, montant, statut, commercialId, infosEleveAvantUtilisation, dateExpiration, dateUtilisation, eleveId) | Critique | B5 | ⏳ À faire |
+| `B6-01` | CodeSecurite | Créer le schéma Mongoose CodeSecurite (formationId, numeroVersement, montant, statut, commercialId, infosEleveAvantUtilisation, dateExpiration, dateUtilisation, eleveId) | Critique | B5 | ✅ Validé |
 
-| `B6-02` | PlanDeVersement | Créer le schéma Mongoose PlanDeVersement (studentId, formationId, nombreVersementsChoisi, versements[]) | Critique | B5 | ⏳ À faire |
+| `B6-02` | PlanDeVersement | Créer le schéma Mongoose PlanDeVersement (studentId, formationId, nombreVersementsChoisi, versements[]) | Critique | B5 | ✅ Validé |
 
-| `B6-03` | CodeSecurite | Génération d'un lot de codes par l'Administrateur (liés à une formation + un numéro de versement + un montant) | Critique | B5 | ⏳ À faire |
+| `B6-03` | CodeSecurite | Génération d'un lot de codes par l'Administrateur (liés à une formation + un numéro de versement + un montant) | Critique | B5 | ✅ Validé |
 
-| `B6-04` | CodeSecurite | Calcul automatique du nombre maximal de versements selon la durée de la formation | Critique | B5 | ⏳ À faire |
+| `B6-04` | CodeSecurite | Calcul automatique du nombre maximal de versements selon la durée de la formation | Critique | B5 | ✅ Validé |
 
-| `B6-05` | CodeSecurite | Attribution d'un lot de codes à un Commercial | Critique | B5 | ⏳ À faire |
+| `B6-05` | CodeSecurite | Attribution d'un lot de codes à un Commercial | Critique | B5 | ✅ Validé |
 
-| `B6-06` | CodeSecurite | Expiration automatique des codes non utilisés après 90 jours (job planifié) | Critique | B5 | ⏳ À faire |
+| `B6-06` | CodeSecurite | Expiration automatique des codes non utilisés après 90 jours (job planifié) | Critique | B5 | ✅ Validé |
 
-| `B6-07` | CodeSecurite | Endpoint : liste des codes d'un Commercial (les siens uniquement) | Critique | B5 | ⏳ À faire |
+| `B6-07` | CodeSecurite | Endpoint : liste des codes d'un Commercial (les siens uniquement) | Critique | B5 | ✅ Validé |
 
-| `B6-08` | CodeSecurite | Endpoint : liste globale de tous les codes, tous Commerciaux confondus (vue Administrateur) | Haute | B5 | ⏳ À faire |
+| `B6-08` | CodeSecurite | Endpoint : liste globale de tous les codes, tous Commerciaux confondus (vue Administrateur) | Haute | B5 | ✅ Validé |
 
-| `B6-09` | CodeSecurite | Association d'un code à un élève avant utilisation (nom, téléphone) — traçabilité | Haute | B5 | ⏳ À faire |
+| `B6-09` | CodeSecurite | Association d'un code à un élève avant utilisation (nom, téléphone) — traçabilité | Haute | B5 | ✅ Validé |
 
-| `B6-10` | CodeSecurite | Demande de codes supplémentaires par un Commercial | Moyenne | B5 | ⏳ À faire |
+| `B6-10` | CodeSecurite | Demande de codes supplémentaires par un Commercial | Moyenne | B5 | ✅ Validé |
 
 | `B6-11` | Tests | Tests unitaires CodeSecuriteService | Haute | B5 | ⏳ À faire |
 

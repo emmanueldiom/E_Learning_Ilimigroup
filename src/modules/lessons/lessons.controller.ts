@@ -6,7 +6,9 @@ import {
 	Param,
 	Patch,
 	Post,
+	UseInterceptors,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { Roles } from '../../common/decorators/roles.decorator';
 import { Role } from '../../common/enums/role.enum';
@@ -31,6 +33,7 @@ export class LessonsController {
 	}
 
 	@Post('module/:moduleId')
+	@UseInterceptors(FileInterceptor('file'))
 	@Roles(Role.ADMIN_CONTENU)
 	create(
 		@Param('moduleId') moduleId: string,
@@ -41,6 +44,7 @@ export class LessonsController {
 	}
 
 	@Patch(':id')
+	@UseInterceptors(FileInterceptor('file'))
 	@Roles(Role.ADMIN_CONTENU)
 	update(@Param('id') id: string, @Body() dto: UpdateLessonDto) {
 		return this.lessonsService.update(id, dto);

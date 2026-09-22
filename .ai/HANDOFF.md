@@ -2,13 +2,13 @@
 
 > **Ce fichier doit être mis à jour à la fin de chaque session de travail.** Il permet à la prochaine session (toi ou un assistant IA) de reprendre exactement où on s'est arrêté, sans avoir à tout redemander.
 
-**Dernière mise à jour :** 2026-09-17 — contexte métier v4 synchronisé
+**Dernière mise à jour :** 2026-09-22 — Sprint B6 avancé
 
 ---
 
 ## 1. Où en est le projet, en une phrase
 
-Le cahier des charges et le planning des sprints sont finalisés. Les sprints B0, B1, B2 et B3 sont validés. Le travail reprend sur **B4-01**, première tâche du Sprint B4.
+Le cahier des charges et le planning des sprints sont finalisés. Les sprints B0, B1, B2 et B3 sont validés. Le Sprint B5 est implémenté à 8/9 tâches et le Sprint B6 à 10/11 tâches; les tests unitaires restent volontairement ouverts.
 
 ## 2. Ce qui est fait
 
@@ -21,7 +21,7 @@ Le cahier des charges et le planning des sprints sont finalisés. Les sprints B0
 
 ## 3. Ce qui est en cours
 
-*(rien en ce moment — prochaine session = attaquer les tâches ci-dessous)*
+- [ ] Écrire les tests unitaires `SecurityCodesService` (`B6-11`)
 
 ## 4. Prochaine tâche (voir aussi `tasks/current-task.md`)
 
@@ -31,7 +31,7 @@ Terminer le **Sprint 0** :
 - [ ] Créer le dossier de stockage local `uploads/` et configurer le service de fichier local dans `src/storage/`
 - [ ] Configurer ESLint / Prettier
 
-Puis démarrer le **Sprint B4 — Disciplines / Modules / Leçons / Ressources**. Les exercices sont rattachés aux leçons et seront traités dans B8. Les Sprints B5-B7 viennent ensuite pour les inscriptions, l'accès et les codes de sécurité.
+Puis écrire `B6-11`, avant de démarrer le Sprint B7 — consommation des codes par l'élève. Le flux B7 devra appeler `AccessControlService.grantAccess()` après validation atomique d'un code; aucun paiement en ligne n'est ajouté.
 
 ## 5. Décisions actées à ne pas remettre en question sans raison
 
@@ -70,3 +70,5 @@ Puis démarrer le **Sprint B4 — Disciplines / Modules / Leçons / Ressources**
 | 2026-09-17 | Synchronisation v4 : abandon du paiement en ligne au profit du paiement en personne auprès d'un Commercial, ajout puis validation du rôle `COMMERCIAL` et des tâches RBAC `B2-11`/`B2-12`. |
 | 2026-09-17 | Alignement documentaire sur la hiérarchie pédagogique du workplan : Formation → Discipline → Module → Leçon → Ressources / Exercices. |
 | 2026-09-17 | Implémentation complète du Sprint B3 : schéma, règles de formation, publication, catalogue, accès étudiant, versements et assignation Formateur. Prochaine tâche : B4-01. |
+| 2026-09-22 | Début du Sprint B5 : schéma Enrollment, service d'inscription, contrôle d'accès, suspension/restauration, endpoints de consultation et test ciblé. Reste B5-09. |
+| 2026-09-22 | Sprint B6 avancé : schémas CodeSecurite/PlanDeVersement, génération de lots, attribution admin-commercial, listes, traçabilité, demandes commerciales et expiration planifiée à 90 jours. Reste B6-11. |

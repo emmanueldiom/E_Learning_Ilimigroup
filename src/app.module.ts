@@ -9,11 +9,14 @@ import { GuardsModule } from './guards/guards.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './guards/auth.guard';
 import { RolesGuard } from './guards/roles.guard';
+import { ScheduleModule } from '@nestjs/schedule';
 import { FormationsModule } from './modules/formations/formations.module';
 import { DisciplinesModule } from './modules/disciplines/disciplines.module';
 import { ModulesModule } from './modules/modules/modules.module';
 import { LessonsModule } from './modules/lessons/lessons.module';
 import { ResourcesModule } from './modules/resources/resources.module';
+import { EnrollmentsModule } from './modules/enrollments/enrollments.module';
+import { SecurityCodesModule } from './modules/security-codes/security-codes.module';
 
 @Module({
   imports: [
@@ -21,6 +24,7 @@ import { ResourcesModule } from './modules/resources/resources.module';
       isGlobal: true,
       validationSchema: envValidationSchema,
     }),
+    ScheduleModule.forRoot(),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -34,6 +38,8 @@ import { ResourcesModule } from './modules/resources/resources.module';
     ModulesModule,
     LessonsModule,
     ResourcesModule,
+    EnrollmentsModule,
+    SecurityCodesModule,
     GuardsModule,
   ],
   controllers: [AppController],
